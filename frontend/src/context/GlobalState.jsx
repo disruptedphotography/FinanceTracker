@@ -15,20 +15,20 @@ export const GlobalProvider = ({ children }) => {
     const [state, dispatch] = useReducer(AppReducer, initialState)
 
     async function getTransactions() {
-  try {
-    const res = await axios.get('/api/transactions');
+        try {
+            const res = await axios.get('/api/transactions');
 
-    dispatch({
-      type: 'GET_TRANSACTIONS',
-      payload: res.data.data // res.data is the axios object, .data is your backend array
-    });
-  } catch (err) {
-    dispatch({
-      type: 'TRANSACTION_ERROR',
-      payload: err.response.data.error
-    });
-  }
-}
+            dispatch({
+                type: 'GET_TRANSACTIONS',
+                payload: res.data.data // res.data is the axios object, .data is your backend array
+            });
+        } catch (err) {
+            dispatch({
+                type: 'TRANSACTION_ERROR',
+                payload: err.response.data.error
+            });
+        }
+    }
 
     async function deleteTransaction(id) {
         try {
